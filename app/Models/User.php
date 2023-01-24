@@ -12,9 +12,9 @@ use Spatie\Permission\Traits\HasRoles;
 use Storage;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasRoles,SoftDeletes;
+    use HasRoles,SoftDeletes,Notifiable;
 
     //TODO put correct status Ids
     protected $statusId = [1,2,3];

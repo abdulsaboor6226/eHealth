@@ -47,6 +47,9 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>{{ Auth::user()->name }}</strong></a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('profile') }}" >{{ __('Profile') }}</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                                     </li>
                                 </ul>
@@ -58,10 +61,10 @@
                             @endif
                         @endauth
                     @endif
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </ul>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
             </div>
         </div>
     </nav>

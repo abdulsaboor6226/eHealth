@@ -11,8 +11,8 @@
                                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
                             @endif
                             <div class="brand-logo text-center">
-                                {{config('app.name')}}
-{{--                                <img src="{{asset('lifeline.png')}}" alt="logo">--}}
+                               <img src="{{asset('img/logo.png')}}" alt="logo">
+                                {{-- {{config('app.name')}} --}}
                             </div>
                             <h4>Hello! let's get started</h4>
                             <h6 class="font-weight-light">Sign in to continue.</h6>

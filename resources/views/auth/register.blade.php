@@ -8,8 +8,8 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo text-center">
-                                {{config('app.name')}}
-                                {{--                                <img src="{{asset('lifeline.png')}}" alt="logo">--}}
+                                <img src="{{asset('img/logo.png')}}" alt="logo">
+                                {{-- {{config('app.name')}} --}}
                             </div>
                             <h4>New here?</h4>
                             <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>

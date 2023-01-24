@@ -34,7 +34,7 @@ class LoginController extends Controller
             return route('admin.index');
         }
         else{
-            return route('frontend.index');
+            return route('home');
         }
 //        if (auth()->user()->hasRole('editor')) {
 //            return redirect()->intended(config('editor.dashboard'));
