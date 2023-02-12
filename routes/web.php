@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-
+use App\Http\Controllers\AppointmentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,5 +44,18 @@ Route::middleware(['auth', 'verified'])->group(function (){
     Route::resource('doctor',DoctorController::class);
     Route::resource('staff',StaffController::class);
     // Route::resource('profile',StaffController::class);
+
+    // prescription section
+    
+    Route::get('appiontments',[AppointmentController::class,'appiontments'])->name('appiontments');
+    Route::match(['get','post'],'appiontment/add',[AppointmentController::class,'appiontmentAdd'])->name('appiontment.add');
+    Route::match(['get','post'],'appiontment/edit/{id?}',[AppointmentController::class,'appiontmentEdit'])->name('appiontment.edit');
+    Route::get('appiontment/delete/{id?}',[AppointmentController::class,'appiontmentDel'])->name('appiontment.del');
+
+    Route::get('prescriptions',[AppointmentController::class,'index'])->name('prescription');
+    Route::match(['get','post'],'prescriptions/add',[AppointmentController::class,'add'])->name('prescription.add');
+    Route::match(['get','post'],'prescriptions/edit/{id?}',[AppointmentController::class,'edit'])->name('prescription.edit');
+    Route::get('prescriptions/delete/{id?}',[AppointmentController::class,'del'])->name('prescription.del');
+    Route::get('prescriptions/generate-pdf/{id}', [AppointmentController::class, 'generatePDF'])->name('generate-pdf');
 });
 

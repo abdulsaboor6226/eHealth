@@ -2,13 +2,20 @@
 
 
 @section('content')
+@section('css')
+<style type="text/css">
+    #appiontment-chart{
+        height: 310px !important;
+    }
+</style>
+@endsection
     <div class="content-wrapper">
         <div class="row">
             <div class="col-md-12 grid-margin">
                 <div class="row">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                         <h3 class="font-weight-bold">Welcome {{\Illuminate\Support\Facades\Auth::user()->name}}</h3>
-                        <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                        <h6 class="font-weight-normal mb-0">All systems are running smoothly!<!--  You have <span class="text-primary">3 unread alerts!</span> --></h6>
                     </div>
                     <div class="col-12 col-xl-4">
                         <div class="justify-content-end d-flex">
@@ -66,18 +73,16 @@
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-light-danger">
                             <div class="card-body">
-                                <p class="mb-4">Total Pending User</p>
-                                <p class="fs-30 mb-2">{{isset($total_pending_user)}}</p>
-                                {{--                                <p>10.00% (30 days)</p>--}}
+                                <p class="mb-4">Total Doctors</p>
+                                <p class="fs-30 mb-2">{{$doctors}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-dark-blue">
                             <div class="card-body">
-                                <p class="mb-4">Total Active User</p>
-                                <p class="fs-30 mb-2">{{isset($total_active_user)}}</p>
-                                {{--                                <p>10.00% (30 days)</p>--}}
+                                <p class="mb-4">Total Patients</p>
+                                <p class="fs-30 mb-2">{{$patient}}</p>
                             </div>
                         </div>
                     </div>
@@ -85,9 +90,8 @@
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-tale">
                             <div class="card-body">
-                                <p class="mb-4">Total Service</p>
-                                <p class="fs-30 mb-2">{{isset($total_service)}}</p>
-                                {{--                                <p>10.00% (30 days)</p>--}}
+                                <p class="mb-4">Total Staff</p>
+                                <p class="fs-30 mb-2">{{$staff}}</p>
                             </div>
                         </div>
                     </div>
@@ -95,9 +99,8 @@
                     <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card card-tale">
                             <div class="card-body">
-                                <p class="mb-4">Total Product</p>
-                                <p class="fs-30 mb-2">{{isset($total_product)}}</p>
-                                {{--                                <p>10.00% (30 days)</p>--}}
+                                <p class="mb-4">Total Appiontment</p>
+                                <p class="fs-30 mb-2">{{$appiont}}</p>
                             </div>
                         </div>
                     </div>
@@ -106,48 +109,21 @@
 
 
         </div>
-{{--        <div class="row">--}}
-{{--            <div class="col-md-6 grid-margin stretch-card">--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <p class="card-title">Order Details</p>--}}
-{{--                        <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>--}}
-{{--                        <div class="d-flex flex-wrap mb-5">--}}
-{{--                            <div class="mr-5 mt-3">--}}
-{{--                                <p class="text-muted">Order value</p>--}}
-{{--                                <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>--}}
-{{--                            </div>--}}
-{{--                            <div class="mr-5 mt-3">--}}
-{{--                                <p class="text-muted">Orders</p>--}}
-{{--                                <h3 class="text-primary fs-30 font-weight-medium">14k</h3>--}}
-{{--                            </div>--}}
-{{--                            <div class="mr-5 mt-3">--}}
-{{--                                <p class="text-muted">Users</p>--}}
-{{--                                <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>--}}
-{{--                            </div>--}}
-{{--                            <div class="mt-3">--}}
-{{--                                <p class="text-muted">Downloads</p>--}}
-{{--                                <h3 class="text-primary fs-30 font-weight-medium">34040</h3>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <canvas id="order-chart"></canvas>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="col-md-6 grid-margin stretch-card">--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-body">--}}
-{{--                        <div class="d-flex justify-content-between">--}}
-{{--                            <p class="card-title">Sales Report</p>--}}
-{{--                            <a href="#" class="text-info">View all</a>--}}
-{{--                        </div>--}}
-{{--                        <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>--}}
-{{--                        <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>--}}
-{{--                        <canvas id="sales-chart"></canvas>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card" style="height: 500px;">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <p class="card-title">Appiont Report</p>
+                            <!-- <a href="#" class="text-info">View all</a> -->
+                        </div>
+                        <p class="font-weight-500">The total number of appiontments within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                        <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+                        <canvas id="appiontment-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
 {{--        <div class="row">--}}
 {{--            <div class="col-md-12 grid-margin stretch-card">--}}
 {{--                <div class="card position-relative">--}}
@@ -663,4 +639,95 @@
 {{--            </div>--}}
 {{--        </div>--}}
     </div>
+@endsection
+@section('js')
+<script type="text/javascript">
+    if ($("#appiontment-chart").length) {
+      var SalesChartCanvas = $("#appiontment-chart").get(0).getContext("2d");
+      var SalesChart = new Chart(SalesChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: [
+                    @foreach($count as $cou)
+                        "{{$cou->month_name}}",
+                    @endforeach
+                ],
+          datasets: [{
+              label: 'Appionments',
+              data: [
+                        @foreach($count as $cou)
+                            "{{$cou->count}}",
+                        @endforeach
+                    ],
+              backgroundColor: '#98BDFF'
+            },
+            {
+              label: 'Prescriptions',
+              data: [
+                        @foreach($prescp as $pri)
+                            "{{$pri->count}}",
+                        @endforeach
+                    ],
+              backgroundColor: '#4B49AC'
+            }
+          ]
+        },
+        options: {
+          cornerRadius: 5,
+          responsive: true,
+          maintainAspectRatio: true,
+          layout: {
+            padding: {
+              left: 0,
+              right: 0,
+              top: 20,
+              bottom: 0
+            }
+          },
+          scales: {
+            yAxes: [{
+              display: true,
+              gridLines: {
+                display: true,
+                drawBorder: false,
+                color: "#F2F2F2"
+              },
+              ticks: {
+                display: true,
+                min: 0,
+                max: {{$total}},
+                callback: function(value, index, values) {
+                  return  value ;
+                },
+                autoSkip: true,
+                maxTicksLimit: 10,
+                fontColor:"#6C7383"
+              }
+            }],
+            xAxes: [{
+              stacked: false,
+              ticks: {
+                beginAtZero: true,
+                fontColor: "#6C7383"
+              },
+              gridLines: {
+                color: "rgba(0, 0, 0, 0)",
+                display: false
+              },
+              barPercentage: 1
+            }]
+          },
+          legend: {
+            display: false
+          },
+          elements: {
+            point: {
+              radius: 0
+            }
+          }
+        },
+      });
+      document.getElementById('sales-legend').innerHTML = SalesChart.generateLegend();
+    }
+</script>
 @endsection

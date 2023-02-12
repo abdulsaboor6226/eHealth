@@ -1,7 +1,7 @@
 <div class="top_menu row m0">
     <div class="container">
         <div class="float-left">
-            <a class="dn_btn" href="mailto:medical@example.com"><i class="ti-email"></i>medical@example.com</a>
+            <a class="dn_btn" href="mailto:medical@example.com"><i class="ti-email"></i>{{ Auth::user()->email ?? 'Youremail@test.com'}}</a>
             <span class="dn_btn"> <i class="ti-location-pin"></i>Find our Location</span>
         </div>
         <div class="float-right">
@@ -29,8 +29,7 @@
             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                 <ul class="nav navbar-nav menu_nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="department.html">Department</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="department.html">Department</a></li>
                     <li class="nav-item"><a class="nav-link" href="doctors.html">Doctors</a></li>
                     <li class="nav-item submenu dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
@@ -40,9 +39,17 @@
                             <li class="nav-item"><a class="nav-link" href="element.html">element</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
                     @if (Route::has('login'))
                         @auth
+                            @if(Auth::user()->hasRole('doctor') || Auth::user()->hasRole('patient'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('prescription') }}">Prescriptions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('appiontments') }}">Appiontments</a>
+                                </li>
+                            @endif
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><strong>{{ Auth::user()->name }}</strong></a>
                                 <ul class="dropdown-menu">
@@ -55,9 +62,13 @@
                                 </ul>
                             </li>
                         @else
-                            <li class="nav-item"><a class="nav-link" href="{{route('login')}}">Login</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('login')}}">Login</a>
+                            </li>
                             @if (Route::has('register'))
-                                <li class="nav-item"><a class="nav-link" href="{{route('register')}}">Register</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('register')}}">Register</a>
+                                </li>
                             @endif
                         @endauth
                     @endif
